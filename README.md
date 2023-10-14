@@ -1,8 +1,8 @@
 # Spring boot chat application
-
+(The concept can also be used as a study prep before a quiz/exam)
 "As the world engages in conflict over divergent religious beliefs, we endeavor to illuminate the underlying essence that binds humanity together."
 
-A prototype for a fundraising organization website with a chatbot embedded in it which 
+A prototype for a fundraising organization website with a chatbot embedded in it. 
 
 Input File: Texts from the scriptures
 
