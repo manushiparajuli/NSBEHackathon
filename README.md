@@ -5,7 +5,9 @@
 A prototype for a fundraising organization website with a chatbot embedded in it which 
 
 Input File: Texts from the scriptures
+
 User Input: Could be words like love, kindness, joy, humanity
+
 Output: Highlight the sentences that focuses on these keywords
 
 ![Screenshot 2023-10-14 155747](https://github.com/manushiparajuli/NSBEHackathon/assets/55906277/031cf460-e297-40f1-8a6e-017bf9ca5a2a)
