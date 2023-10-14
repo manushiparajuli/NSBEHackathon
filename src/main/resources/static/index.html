@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Custom Search Chatbot</title>
+    <style>
+        body {
+            background-color: #eaeab4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: row;
+        }
+        .donate-button {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .donate-button:hover {
+            background-color: #45a049;
+        }
+
+        .chat-container {
+            width: 800px;
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            background-color: #a0c9b4;
+            flex: 20;
+        }
+
+        .chat-sentence {
+            background-color: #f0f0f0;
+            color: rgb(11, 10, 10);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .user-sentence {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .chatbot-response {
+            background-color: #d0cfc7;
+            color: rgb(60, 56, 56);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .chatbot-response:nth-child(odd) {
+            background-color: #d2ebf0;
+        }
+
+        #user-input {
+            display: flex;
+        }
+
+        #search-input {
+            flex: 2;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #search-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card-details-form {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .card-details-form h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .card-details-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-details-form label {
+            margin-bottom: 5px;
+        }
+
+        .card-details-form input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .card-details-form .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .card-details-form .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        #search-button:hover {
+            background-color: #45a049;
+        }
+
+        #search-button {
+            background-color: #6c7a0d;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .additional-section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            flex: 1;
+            margin: 10px;
+        }
+
+        .additional-section2 {
+            background-color: #c3daeb;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            flex: 1;
+            margin: 10px;
+        }
+
+        .additional-section1 {
+            background-color: #827777;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            flex: none;
+            margin: 10px;
+        }
+
+        .additional-section4 {
+            background-color: #deb7bd;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            flex: none;
+            margin: 10px;
+        }
+
+        .additional-section1 {
+            background-color: #b4b4c6;
+            padding: 10px;
+            margin-top: 20px;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<row>
+    <div class="additional-section1">
+        &nbsp;<img src="download.png" alt="Image Description" width="800" height="200">
+    </div>
+    <div class="chat-container">
+        <div id="chat-output">
+            <h1>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Searching for? ❤️?</h1>
+        </div>
+        <div id="user-input">
+            <input type="text" id="search-input" placeholder="Search..." autocomplete="off" />
+            <button id="search-button">Search</button>
+        </div>
+    </div>
+    <div class="additional-section">
+        <h2>Afgan infant handed to US troops</h2>
+        <img src="baby.webp" alt="Image Description" width="600" height="300">
+    </div>
+    <div class="additional-section1">
+        <h2>Caring is loving</h2>
+        <img src="abc.jpg" alt="Image Description" width="600" height="400">
+        <button class="donate-button">Donate Now, Save a Life</button>
+        <div class="card-details-form">
+            <h2>Enter Card Details</h2>
+            <form>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+                <label for="expiration-date">Expiration Date:</label>
+                <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YYYY" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+                <button class="submit-button" type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+</row>
+<row>
+    <div class="additional-section1">
+        <img src="photo.webp" alt="Image Description" width="600" height="200">
+    </div>
+    <div class="additional-section2">
+        <h2>Recent Attack on Israel</h2>
+        <img src="israel.jpg" alt="Image Description" width="600" height="400">
+    </div>
+    <div class="additional-section">
+        <h2>Baby giving flower to a soldier</h2>
+        <img src="love.jpg" alt="Image Description" width="600" height="300">
+    </div>
+    <div class="additional-section4">
+        <h2>Sharing is caring</h2>
+        <img src="original.jpg" alt="Image Description" width="600" height="400">
+    </div>
+    <div class="additional-section">
+        <h2>Smile</h2>
+        <img src="original.avif" alt="Image Description" width="600" height="500">
+    </div>
+</row>
+<script>
+    'use strict';
+
+    const chatOutput = document.getElementById('chat-output');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    searchButton.addEventListener('click', performSearch);
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            // Extract the first word as a headline
+            const words = query.split(' ');
+            const headline = words[0];
+            const remainingQuery = words.slice(1).join(' ');
+
+            displayChatMessage(`You: "${query}"`);
+            displayChatbotResponse(`Searching for "${query}"`);
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        const fileContent = event.target.result;
+                        const sentences = fileContent.split(/[.!?]/);
+                        let found = false;
+                        let responseCounter = 0;
+
+                        for (const sentence of sentences) {
+                            if (sentence.toLowerCase().includes(query.toLowerCase())) {
+                                found = true;
+                                setTimeout(() => {
+                                    responseCounter++;
+                                    displayChatbotResponse(`"${sentence.trim()}🌸 "`, responseCounter);
+                                }, 1000 * responseCounter); // Display one by one with a 1-second interval
+                            }
+                        }
+
+                        if (!found) {
+                            responseCounter++;
+                            displayChatbotResponse('Try searching something different😉. No results found', responseCounter);
+                        }
+                    };
+
+                    reader.readAsText(file);
+                }
+            });
+
+            fileInput.click();
+        }
+    }
+
+    function displayChatMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = message;
+        chatOutput.appendChild(messageElement);
+    }
+
+    function displayChatbotResponse(response, counter) {
+        setTimeout(() => {
+            const responseElement = document.createElement('div');
+            responseElement.className = 'chatbot-response';
+            responseElement.innerHTML = response;
+            chatOutput.appendChild(responseElement);
+        }, 1000 * counter);
+    }
+</script>
+
+
+</body>
+</html>
