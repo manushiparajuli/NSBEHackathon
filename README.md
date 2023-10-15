@@ -12,7 +12,6 @@ Output: Highlight the sentences that focuses on these keywords
 
 https://github.com/manushiparajuli/NSBEHackathon/assets/55906277/b10e29d7-7580-403c-ad4b-553123e8538a
 
-![Screenshot 2023-10-14 161633](https://github.com/manushiparajuli/NSBEHackathon/assets/55906277/a06dbbe5-97d1-4825-bdfa-f5a2ee53286d)
 
 ![Screenshot 2023-10-14 155809](https://github.com/manushiparajuli/NSBEHackathon/assets/55906277/165417a9-6d79-4bbb-ac0d-7b58ce0a3ee2)
 
